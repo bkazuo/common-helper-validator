@@ -2,6 +2,8 @@
     "name": "bkazuo/common-helper-validator",
     "type": "project",
     "description": "Common helper validators",
+    "keywords": ["validator","utils","helpers","checkers"],
+    "homepage": "https://github.com/bkazuo/common-helper-validator/",
     "minimum-stability": "dev",
 
     "require": {
