@@ -1,7 +1,7 @@
 {
     "name": "bkazuo/common-helper-validator",
     "type": "project",
-    "description": "Common helper validators",
+    "description": "Classe que contém métodos auxiliares para ajudar na validação de CPF, CNPJ, CEP, E-mail, Estado, etc. Inteiramente construido em PHP para rodar sob qualquer sistema operacional",
     "keywords": ["validator","utils","helpers","checkers"],
     "license": "MIT",
     "homepage": "https://github.com/bkazuo/common-helper-validator/",
