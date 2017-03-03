@@ -5,9 +5,8 @@
     "keywords": ["validator","utils","helpers","checkers"],
     "homepage": "https://github.com/bkazuo/common-helper-validator/",
     "minimum-stability": "dev",
-
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.4.0"
     },
     "autoload": {
         "psr-0": {
