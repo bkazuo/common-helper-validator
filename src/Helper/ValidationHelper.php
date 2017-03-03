@@ -8,8 +8,7 @@ namespace Helper;
  * Helper methods to validate user input.
  *
  */
-class ValidationHelper
-{
+class ValidationHelper {
 
     /**
      * Validate E-Mail Address
@@ -18,8 +17,7 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isEmail($email)
-    {
+    public function isEmail($email) {
         return ($email && is_string($email) && preg_match('/^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,}$/', $email) == 1);
     }
 
@@ -30,8 +28,7 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isGuid($guid)
-    {
+    public function isGuid($guid) {
         return ($guid && is_string($guid) && preg_match('/^[0-9a-f]{8}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{4}\-[0-9a-f]{12}$/', $guid) == 1);
     }
 
@@ -42,8 +39,7 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isCpf($cpf)
-    {
+    public function isCpf($cpf) {
         $blacklist = array(
             '00000000000',
             '11111111111',
@@ -62,12 +58,10 @@ class ValidationHelper
         }
 
         $cpf = (string) $cpf;
-
         for ($t = 9; $t < 11; $t++) {
             for ($d = 0, $c = 0; $c < $t; $c++) {
                 $d += $cpf{$c} * (($t + 1) - $c);
             }
-
             $d = ((10 * $d) % 11) % 10;
 
             if ($cpf{$c} != $d) {
@@ -85,8 +79,7 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isNotBlank($value)
-    {
+    public function isNotBlank($value) {
         $result = ($value && is_string($value) && strlen(trim($value)) > 0);
 
         return $result;
@@ -99,13 +92,11 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isPositiveInteger($number)
-    {
+    public function isPositiveInteger($number) {
         return is_scalar($number) && preg_match('/^\d+$/', $number) && $number > 0;
     }
 
-    public function isInteger($number)
-    {
+    public function isInteger($number) {
         return is_scalar($number) && preg_match('/^\d+$/', $number) && $number >= 0;
     }
 
@@ -116,18 +107,15 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isPositiveFloat($number)
-    {
+    public function isPositiveFloat($number) {
         return is_scalar($number) && (preg_match('/^\d+(\.\d+)?$/', $number) && $number > 0);
     }
 
-    public function isFloat($number)
-    {
+    public function isFloat($number) {
         return is_float(floatval ($number));
     }
 
-    public function isDate($date)
-    {
+    public function isDate($date) {
         $isFormatValid = $date && is_scalar($date) && preg_match('/^\d{4}\-\d{2}-\d{2}?$/', $date);
 
         if (!$isFormatValid) {
@@ -135,14 +123,12 @@ class ValidationHelper
         }
 
         $dateParts = explode('-', $date);
-
         $isDateValid = checkdate($dateParts[1], $dateParts[2], $dateParts[0]);
 
         return $isDateValid;
     }
 
-    public function isDateTime($date)
-    {
+    public function isDateTime($date) {
         $isFormatValid = $date && is_scalar($date) && preg_match('/^\d{4}\-\d{2}-\d{2}( \d{1,2}:\d{2}:\d{2})?$/', $date);
 
         if (!$isFormatValid) {
@@ -152,9 +138,7 @@ class ValidationHelper
         $dateTimeParts = explode(' ', $date);
         $dateParts = explode('-', $dateTimeParts[0]);
         $hourParts = isset($dateTimeParts[1]) ? explode(':', $dateTimeParts[1]) : array(0, 0, 0);
-
         $isDateValid = checkdate($dateParts[1], $dateParts[2], $dateParts[0]);
-
         $isHourValid =
             ($hourParts[0] >= 0 && $hourParts[0] <= 23) &&
             ($hourParts[1] >= 0 && $hourParts[1] <= 59) &&
@@ -164,8 +148,7 @@ class ValidationHelper
     }
 
 
-    public function isTime($date)
-    {
+    public function isTime($date) {
         $isFormatValid = $date && is_scalar($date) && preg_match('/^(\d{1,2}:\d{2})?$/', $date);
 
         if (!$isFormatValid) {
@@ -173,7 +156,6 @@ class ValidationHelper
         }
 
         $timeParts = explode(':', $date);
-
         $isHourValid =
             ($timeParts[0] >= 0 && $timeParts[0] <= 23) &&
             ($timeParts[1] >= 0 && $timeParts[1] <= 59);
@@ -181,8 +163,7 @@ class ValidationHelper
         return $isHourValid;
     }
 
-    public function isHashId($value)
-    {
+    public function isHashId($value) {
         return $value && preg_match('/^[a-f0-9]{32}$/', $value);
     }
 
@@ -193,8 +174,7 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isCep($value)
-    {
+    public function isCep($value) {
         if (preg_match('/^[0-9]{8}$/', $value)) {
             return true;
         } else {
@@ -209,8 +189,7 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isPhone($value)
-    {
+    public function isPhone($value) {
         if (preg_match('/^[0-9]{10,11}$/', $value)) {
             return true;
         } else {
@@ -225,8 +204,7 @@ class ValidationHelper
      *
      * @return boolean
      */
-    public function isState($value)
-    {
+    public function isState($value) {
         $state = array(
         "AC"=>"Acre",
         "AL"=>"Alagoas",
@@ -262,23 +240,8 @@ class ValidationHelper
             return false;
         }
     }
-    /**
-     * Validate OrderNumber
-     *
-     * @param string $value
-     *
-     * @return boolean
-     */
-    public function isOrderNumber($value)
-    {
-        if (preg_match('/^[1-9]{1}[0-9]{8}$/', $value)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    function multiplica_cnpj( $cnpj, $posicao = 5 ) {
+    public function multiplica_cnpj( $cnpj, $posicao = 5 ) {
         $calculo = 0;
         for ( $i = 0; $i < strlen( $cnpj ); $i++ ) {
             $calculo = $calculo + ( $cnpj[$i] * $posicao );
@@ -290,6 +253,13 @@ class ValidationHelper
         return $calculo;
     }
 
+    /**
+     * Validate Cnpj
+     *
+     * @param string $value
+     *
+     * @return boolean
+     */
     public function isCnpj($cnpj) {
         $cnpj = preg_replace( '/[^0-9]/', '', $cnpj );
         $cnpj = (string)$cnpj;
@@ -308,74 +278,50 @@ class ValidationHelper
         }
     }
 
-    public function isRenavam($renavam){
-      // Pegando como exemplo o renavam = 639884962
+    /**
+     * Validate Renavam
+     *
+     * @param string $value
+     *
+     * @return boolean
+     */
+    public function isRenavam($renavam) {
+        if(preg_match('/^([0-9]{9})$/',$renavam)){
+            $renavam = "00".$renavam;
+        }
 
+        if(!preg_match('/^([0-9]{11})$/',$renavam)){
+            return false;
+        }
 
-      // Completa com zeros a esquerda se for no padrao antigo de 9 digitos
-      // renavam = 00639884962
-      if(preg_match('/^([0-9]{9})$/',$renavam)){
-        $renavam = "00".$renavam;
-      }
+        $renavamSemDigito = preg_replace( '/^([0-9]{10})([0-9]{1})$/', '$1', $renavam );
+        $renavamReversoSemDigito = strrev($renavamSemDigito);
 
+        $soma = 0;
 
-      // Valida se possui 11 digitos pos formatacao
-      if(!preg_match('/^([0-9]{11})$/',$renavam)){
-        return false;
-      }
+        for ($i=0; $i < 8; $i++) {
+            $algarismo = intval(substr($renavamReversoSemDigito, $i, 1));
+            $multiplicador = $i + 2;
 
-      // Remove o digito (11 posicao)
-      // renavamSemDigito = 0063988496
-      $renavamSemDigito = preg_replace( '/^([0-9]{10})([0-9]{1})$/', '$1', $renavam );
+            $soma += $algarismo * $multiplicador;
+        }
 
+        $soma += intval(substr($renavamReversoSemDigito, 8, 1))*2;
+        $soma += intval(substr($renavamReversoSemDigito, 9, 1))*3;
+        $mod11 = $soma % 11;
 
-      // Inverte os caracteres (reverso)
-      // renavamReversoSemDigito = 69488936
-      $renavamReversoSemDigito = strrev($renavamSemDigito);
+        $ultimoDigitoCalculado = 11 - $mod11;
 
-      $soma = 0;
+        if ($ultimoDigitoCalculado >= 10) {
+            $ultimoDigitoCalculado = 0;
+        }
 
-      // Multiplica as strings reversas do renavam pelos numeros multiplicadores
-      // para apenas os primeiros 8 digitos de um total de 10
-      // Exemplo: renavam reverso sem digito = 69488936
-      // 6, 9, 4, 8, 8, 9, 3, 6
-      // * * * * * * * *
-      // 2, 3, 4, 5, 6, 7, 8, 9 (numeros multiplicadores - sempre os mesmos [fixo])
-      // 12 + 27 + 16 + 40 + 48 + 63 + 24 + 54
-      // soma = 284
-      for ($i=0; $i < 8; $i++) {
-        $algarismo = intval(substr($renavamReversoSemDigito, $i, 1));
-        $multiplicador = $i + 2;
+        $digitoRealInformado = preg_replace( '/^([0-9]{10})([0-9]{1})$/', '$2', $renavam );
 
-        $soma += $algarismo * $multiplicador;
-      }
-
-
-      // Multiplica os dois ultimos digitos e soma
-      $soma += intval(substr($renavamReversoSemDigito, 8, 1))*2;
-      $soma += intval(substr($renavamReversoSemDigito, 9, 1))*3;
-
-
-      // mod11 = 284 % 11 = 9 (resto da divisao por 11)
-      $mod11 = $soma % 11;
-
-      // Faz-se a conta 11 (valor fixo) - mod11 = 11 - 9 = 2
-      $ultimoDigitoCalculado = 11 - $mod11;
-
-      // ultimoDigito = Caso o valor calculado anteriormente seja 10 ou 11, transformo ele em 0
-      // caso contrario, eh o proprio numero
-      if ($ultimoDigitoCalculado >= 10) {
-        $ultimoDigitoCalculado = 0;
-      }
-
-      // Pego o ultimo digito do renavam original (para confrontar com o calculado)
-      $digitoRealInformado = preg_replace( '/^([0-9]{10})([0-9]{1})$/', '$2', $renavam );
-
-      // Comparo os digitos calculado e informado
-      if($ultimoDigitoCalculado == $digitoRealInformado){
-        return true;
-      }else{
-        return false;
-      }
+        if($ultimoDigitoCalculado == $digitoRealInformado){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

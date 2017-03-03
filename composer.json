@@ -3,6 +3,7 @@
     "type": "project",
     "description": "Common helper validators",
     "keywords": ["validator","utils","helpers","checkers"],
+    "license": "MIT",
     "homepage": "https://github.com/bkazuo/common-helper-validator/",
     "require": {
         "php": ">=5.4.0"
