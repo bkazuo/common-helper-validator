@@ -4,7 +4,6 @@
     "description": "Common helper validators",
     "keywords": ["validator","utils","helpers","checkers"],
     "homepage": "https://github.com/bkazuo/common-helper-validator/",
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0"
     },
