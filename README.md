@@ -85,6 +85,8 @@ $isState= $validator->isState('SP');
 // Verifica se é o Renavam é valido
 $isRenavam= $validator->isRenavam('123456789');
 ```
+## Contribuindo
+Por favor, caso tenha alguma sugestão, bug para reportar, ou alguma melhoria, por favor nos comunique através das issues.
 
 ## Licença
 MIT. Por favor, veja o [Arquivo de Licença](license.txt) para mais informações.
