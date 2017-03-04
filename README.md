@@ -77,7 +77,7 @@ $isDatetime = $validator->isTime('20:00:00');
 $isCep = $validator->isCep('01234999');
 
 // Verifica se é um Telefone com código de cidade
-$isPhone= $validator->isCep('11999998888');
+$isPhone= $validator->isPhone('11999998888');
 
 // Verifica se é um Estado através das siglas
 $isState= $validator->isState('SP');
